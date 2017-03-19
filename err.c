@@ -68,7 +68,7 @@ void err_consume(err_t *err, void (*printer)(const char *fmt, ...))
             if (printer) printer("%02zd: %s:%u in %s() - %s\n", i, t->file, t->line, t->func, t->message);
             free(t->message);
         } else {
-            if (printer) printer("%02zd: %s:%u %s()\n", i, t->file, t->line, t->func);
+            if (printer) printer("%02zd: %s:%u in %s()\n", i, t->file, t->line, t->func);
         }
     }
 
