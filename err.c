@@ -65,10 +65,10 @@ void err_consume(err_t *err, void (*printer)(const char *fmt, ...))
     for (size_t i = 0; i < err->size; i++) {
         trace_t *t = &err->trace[i];
         if (t->message) {
-            printer("%02zd: %s:%u in %s() - %s\n", i, t->file, t->line, t->func, t->message);
+            if (printer) printer("%02zd: %s:%u in %s() - %s\n", i, t->file, t->line, t->func, t->message);
             free(t->message);
         } else {
-            printer("%02zd: %s:%u %s()\n", i, t->file, t->line, t->func);
+            if (printer) printer("%02zd: %s:%u %s()\n", i, t->file, t->line, t->func);
         }
     }
 
