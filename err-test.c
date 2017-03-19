@@ -29,7 +29,7 @@ err_t *fun_a(void)
     err_t *err;
 
     result = fail();
-    ERR_ASSERT_MSG(err, on_error, result, ERR_FAIL, "Bad wolf was here: %s", "yes");
+    if (!result) ERR_GOTO_NEW_MSG(on_error, err, ERR_FAIL, "Bad wolf was here: %s", "yes");
 
     err = NULL;
 
@@ -42,7 +42,7 @@ err_t *fun_b(void)
     err_t *err;
 
     err = fun_a();
-    ERR_TJUMP(err, on_error, err_is_ok(err));
+    if (!err_is_ok(err)) ERR_GOTO(on_error, err);
 
     err = NULL;
 
