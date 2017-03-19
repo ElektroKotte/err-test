@@ -42,7 +42,7 @@ err_t *fun_b(void)
     err_t *err;
 
     err = fun_a();
-    ERR_TJUMP(err, on_error, err->code == ERR_OK);
+    ERR_TJUMP(err, on_error, err_is_ok(err));
 
     err = NULL;
 
